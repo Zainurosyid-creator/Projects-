@@ -1,0 +1,322 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: #1a1a1a;
+    color: #e0e0e0;
+    min-height: 100vh;
+    overflow: auto;
+    line-height: 1.5;
+    letter-spacing: 0.3px;
+}
+
+/* Context Menu */
+.context-menu {
+    -webkit-user-select: none;
+    user-select: none;
+    width: auto;
+    height: auto;
+    z-index: 2000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    position: fixed;
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s linear 0.2s, opacity 0.2s ease;
+    background-color: #2d2d2d;
+    color: #e0e0e0;
+    overflow-x: auto;
+    overflow-y: auto;
+    border-radius: 8px;
+}
+
+.context-menu[style*="visibility: visible"] {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s linear 0s, opacity 0.2s ease;
+}
+
+.context-menu.menu-fullscreen {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: stretch;
+    gap: 4px;
+    padding: 16px 14px calc(14px + env(safe-area-inset-bottom, 0px));
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: left;
+    background: rgba(0, 0, 0, 0.55) !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+}
+
+.context-menu.menu-fullscreen .menu-options {
+    background-color: #2d2d2d;
+    border: 1px solid #5a5a5a;
+    border-radius: 16px;
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.45);
+    margin: 0;
+    padding: 8px 0;
+    max-height: min(72vh, 560px);
+    overflow-y: auto;
+}
+
+.context-menu.menu-fullscreen .menu-options .menu-option {
+    font-size: 18px;
+    line-height: 1.35;
+    padding: 16px 20px;
+    white-space: normal;
+}
+
+.context-menu.menu-fullscreen .menu-options .menu-option:active {
+    background: rgba(48, 100, 119, 0.4);
+}
+
+.context-menu.menu-fullscreen .menu-options .menu-option::before {
+    display: none;
+}
+
+.context-menu.menu-fullscreen .menu-options .menu-option.menu-option-mark::before,
+.context-menu.menu-fullscreen .menu-options .menu-option.menu-option-circle-mark::before {
+    display: inline;
+    margin-right: 12px;
+}
+
+.context-menu.menu-fullscreen .menu-options .menu-divider {
+    font-size: 15px;
+    padding: 10px 20px;
+    margin: 6px 0;
+}
+
+.context-menu.menu-fullscreen .menu-close-btn {
+    position: static;
+    align-self: flex-end;
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    font-size: 36px;
+    line-height: 44px;
+    text-align: center;
+    color: #f2f2f2;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.55);
+}
+.context-menu .menu-options {
+    list-style: none;
+    padding: 0;
+    z-index: 1;
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+}
+.context-menu .menu-options .menu-option {
+    font-weight: 500;
+    z-index: 1;
+    font-size: 14px;
+    padding: 10px 40px 10px 20px;
+    cursor: pointer;
+    white-space: nowrap;
+    color: #e0e0e0;
+}
+.context-menu .menu-options .menu-option:hover {
+    background: rgba(0, 0, 0, 0.2);
+}
+.context-menu .menu-options .menu-option::before {
+    content: "●";
+    color: transparent;
+    margin-right: 10px;
+}
+.context-menu .menu-options .menu-option.menu-option-mark::before {
+    content: "✔";
+    color: black;
+    margin-right: 10px;
+}
+.context-menu .menu-options .menu-option.menu-option-circle-mark::before {
+    content: "●";
+    color: black;
+    margin-right: 10px;
+}
+.context-menu .menu-options .menu-divider {
+    background: #d3d3d36b;
+    color: black;
+    padding: 5px 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.context-menu .menu-close-btn {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 30px;
+    font-style: normal;
+    z-index: 1;
+    display: none;
+}
+/* End Context Menu */
+
+/* Loader */
+.loader {
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #306477;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    animation: spin 2s linear infinite;
+    visibility: hidden;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+/* End Loader */
+
+/* ActionBar */
+.actionbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    row-gap: 5px;
+    column-gap: 5px;
+}
+/* End ActionBar */
+
+/* Action Button */
+.action-button {
+    border: none;
+    color: white;
+    padding: 8px 14px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    background-color: #306477;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    border-radius: 6px;
+    transition: all 0.2s ease-in-out;
+}
+
+.action-button:hover {
+    background-color: #407487;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.action-button.toggled {
+    background-color: #4a8ea5;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.15) inset,
+                0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.action-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.action-button:disabled {
+    color: #888;
+    background-color: #2a2a2a;
+    cursor: default;
+    transform: none;
+    box-shadow: none;
+}
+
+@media screen and (max-width: 500px) {
+    .action-button:disabled {
+        display: none;
+    }
+}
+
+/* End Action Button */
+
+/* Action Icon Button */
+.action-icon-button {
+    height: 34px;
+    border: none;
+    fill: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    background-color: #555;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.action-icon-button:hover {
+    background-color: #777;
+}
+
+.action-icon-button:disabled {
+    fill: grey;
+    background-color: rgb(50, 50, 50);
+    cursor: default;
+}
+
+.action-icon-button .button-icon {
+    width: 1.9em;
+    height: 1.9em;
+    display: block;
+}
+/* End Action Icon Button */
+
+/* Snack Bar */
+#snackbar {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    top: 50px;
+}
+
+#snackbar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@keyframes fadein {
+    from {top: 0; opacity: 0;}
+    to {top: 50px; opacity: 1;}
+}
+
+@keyframes fadeout {
+    from {top: 50px; opacity: 1;}
+    to {top: 0; opacity: 0;}
+}
+/* End Snack Bar */
+
+/* Some common styles */
+.notransition {
+    transition: none !important;
+}
